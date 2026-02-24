@@ -38,7 +38,6 @@ class AuthRepositoryImpl @Inject constructor(
                 val location = response.header("Location")
                     ?: error("No Location header in auth response (HTTP ${response.code})")
 
-                // Captures access_token up to next & or end of string
                 val rawToken = Regex("access_token=([^&]+)")
                     .find(location)
                     ?.groupValues
