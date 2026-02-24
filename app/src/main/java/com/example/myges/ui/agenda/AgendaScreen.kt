@@ -93,9 +93,9 @@ private fun AgendaEventCard(event: AgendaEvent) {
                     style = MaterialTheme.typography.bodySmall
                 )
             }
-            if (event.teachers.isNotEmpty()) {
+            if (!event.teacher.isNullOrBlank()) {
                 Text(
-                    text = stringResource(R.string.agenda_event_teachers, event.teachers.joinToString()),
+                    text = stringResource(R.string.agenda_event_teachers, event.teacher),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

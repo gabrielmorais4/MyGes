@@ -6,6 +6,6 @@ data class AgendaEvent(
     val name: String,
     val description: String?,
     val rooms: List<String>,
-    val teachers: List<String>,
+    val teacher: String?,
     val type: String?
 )
