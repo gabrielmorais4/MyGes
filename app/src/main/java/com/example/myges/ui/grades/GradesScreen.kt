@@ -2,6 +2,8 @@ package com.example.myges.ui.grades
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,6 +15,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -23,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.myges.R
-import com.example.myges.core.domain.model.CourseGrades
+import com.example.myges.core.domain.model.CourseGrade
 import com.example.myges.core.domain.model.Semester
 import com.example.myges.ui.components.ErrorContent
 import com.example.myges.ui.components.LoadingContent
@@ -46,13 +50,21 @@ fun GradesScreen(viewModel: GradesViewModel = hiltViewModel()) {
                 modifier = Modifier.padding(innerPadding)
             )
             is GradesUiState.Success -> {
-                LazyColumn(
-                    contentPadding = innerPadding,
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.padding(horizontal = 12.dp)
-                ) {
-                    items(state.data.semesters) { semester ->
-                        SemesterCard(semester = semester)
+                if (state.data.semesters.isEmpty()) {
+                    ErrorContent(
+                        message = stringResource(R.string.grades_empty_message),
+                        onRetry = null,
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                } else {
+                    LazyColumn(
+                        contentPadding = innerPadding,
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.padding(horizontal = 12.dp)
+                    ) {
+                        items(state.data.semesters) { semester ->
+                            SemesterCard(semester = semester)
+                        }
                     }
                 }
             }
@@ -69,71 +81,100 @@ private fun SemesterCard(semester: Semester) {
         )
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(text = semester.name, style = MaterialTheme.typography.titleMedium)
-                semester.average?.let {
-                    Text(
-                        text = stringResource(R.string.grades_semester_average, it),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.primary
+            Text(text = semester.name, style = MaterialTheme.typography.titleMedium)
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            semester.courses.forEachIndexed { index, course ->
+                CourseRow(course = course)
+                if (index < semester.courses.lastIndex) {
+                    HorizontalDivider(
+                        modifier = Modifier.padding(vertical = 6.dp),
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
-            }
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-            semester.courses.forEach { course ->
-                CourseRow(course = course)
             }
         }
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun CourseRow(course: CourseGrades) {
-    Column(modifier = Modifier.padding(vertical = 4.dp)) {
+private fun CourseRow(course: CourseGrade) {
+    Column(modifier = Modifier.padding(vertical = 2.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = course.name,
+                text = course.name.ifBlank { stringResource(R.string.grades_unnamed) },
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.weight(1f)
             )
-            course.average?.let {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                course.average?.let {
+                    Text(
+                        text = "%.2f".format(it),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+                course.letterMark?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                }
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            course.ccAverage?.let {
                 Text(
-                    text = "%.2f".format(it),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.primary
+                    text = stringResource(R.string.grades_cc, it),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            course.exam?.let {
+                Text(
+                    text = stringResource(R.string.grades_exam, it),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            if (course.absences > 0) {
+                Text(
+                    text = stringResource(R.string.grades_absences, course.absences),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error
                 )
             }
         }
-        course.grades.forEach { entry ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+
+        if (course.ccGrades.isNotEmpty()) {
+            FlowRow(
+                modifier = Modifier.padding(top = 4.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Text(
-                    text = entry.name ?: stringResource(R.string.grades_unnamed),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.weight(1f)
-                )
-                val gradeText = when {
-                    entry.isAbsence -> stringResource(R.string.grades_absence)
-                    entry.grade != null -> "%.2f".format(entry.grade)
-                    else -> stringResource(R.string.grades_pending)
+                course.ccGrades.forEach { grade ->
+                    SuggestionChip(
+                        onClick = {},
+                        label = {
+                            Text(
+                                text = "%.2f".format(grade),
+                                style = MaterialTheme.typography.labelSmall
+                            )
+                        },
+                        colors = SuggestionChipDefaults.suggestionChipColors(
+                            containerColor = MaterialTheme.colorScheme.surface
+                        )
+                    )
                 }
-                Text(
-                    text = gradeText,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = if (entry.isAbsence) MaterialTheme.colorScheme.error
-                    else MaterialTheme.colorScheme.onSurface
-                )
             }
         }
     }

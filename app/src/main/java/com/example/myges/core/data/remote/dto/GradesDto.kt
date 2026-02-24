@@ -1,57 +1,29 @@
 package com.example.myges.core.data.remote.dto
 
-import com.example.myges.core.domain.model.CourseGrades
-import com.example.myges.core.domain.model.GradeEntry
-import com.example.myges.core.domain.model.GradesData
-import com.example.myges.core.domain.model.Semester
+import com.example.myges.core.domain.model.CourseGrade
 import com.google.gson.annotations.SerializedName
 
-data class GradeEntryDto(
-    @SerializedName("grade") val grade: Double?,
-    @SerializedName("coef") val coefficient: Double?,
-    @SerializedName("name") val name: String?,
-    @SerializedName("date") val date: String?,
-    @SerializedName("absence") val absence: Boolean?
-) {
-    fun toDomain() = GradeEntry(
-        name = name,
-        grade = grade,
-        coefficient = coefficient,
-        date = date,
-        isAbsence = absence ?: false
-    )
-}
-
-data class CourseGradesDto(
-    @SerializedName("name") val name: String?,
+data class CourseGradeDto(
+    @SerializedName("course") val course: String?,
+    @SerializedName("grades") val grades: List<Double>?,
+    @SerializedName("exam") val exam: Double?,
     @SerializedName("average") val average: Double?,
-    @SerializedName("coef") val coefficient: Double?,
-    @SerializedName("grades") val grades: List<GradeEntryDto>?
+    @SerializedName("trimester_name") val trimesterName: String?,
+    @SerializedName("coef") val coef: String?,
+    @SerializedName("ects") val ects: String?,
+    @SerializedName("ccaverage") val ccAverage: Double?,
+    @SerializedName("letter_mark") val letterMark: String?,
+    @SerializedName("absences") val absences: Int?
 ) {
-    fun toDomain() = CourseGrades(
-        name = name.orEmpty(),
+    fun toDomain() = CourseGrade(
+        name = course.orEmpty(),
+        ccGrades = grades.orEmpty(),
+        ccAverage = ccAverage,
+        exam = exam,
         average = average,
-        coefficient = coefficient,
-        grades = grades?.map { it.toDomain() }.orEmpty()
-    )
-}
-
-data class SemesterDto(
-    @SerializedName("name") val name: String?,
-    @SerializedName("average") val average: Double?,
-    @SerializedName("courses") val courses: List<CourseGradesDto>?
-) {
-    fun toDomain() = Semester(
-        name = name.orEmpty(),
-        average = average,
-        courses = courses?.map { it.toDomain() }.orEmpty()
-    )
-}
-
-data class GradesResponseDto(
-    @SerializedName("semestres") val semesters: List<SemesterDto>?
-) {
-    fun toDomain() = GradesData(
-        semesters = semesters?.map { it.toDomain() }.orEmpty()
+        coef = coef,
+        ects = ects,
+        letterMark = letterMark,
+        absences = absences ?: 0
     )
 }

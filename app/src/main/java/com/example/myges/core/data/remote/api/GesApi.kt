@@ -3,7 +3,7 @@ package com.example.myges.core.data.remote.api
 import com.example.myges.core.data.remote.dto.AbsenceDto
 import com.example.myges.core.data.remote.dto.AgendaEventDto
 import com.example.myges.core.data.remote.dto.ApiResponse
-import com.example.myges.core.data.remote.dto.GradesResponseDto
+import com.example.myges.core.data.remote.dto.CourseGradeDto
 import com.example.myges.core.data.remote.dto.NewsBannerDto
 import com.example.myges.core.data.remote.dto.NewsItemDto
 import com.example.myges.core.data.remote.dto.ProfileDto
@@ -29,7 +29,7 @@ interface GesApi {
     suspend fun getNews(@Query("page") page: Int = 1): ApiResponse<List<NewsItemDto>>
 
     @GET("me/{year}/grades")
-    suspend fun getGrades(@Path("year") year: Int): ApiResponse<GradesResponseDto>
+    suspend fun getGrades(@Path("year") year: Int): ApiResponse<List<CourseGradeDto>>
 
     @GET("me/{year}/absences")
     suspend fun getAbsences(@Path("year") year: Int): ApiResponse<List<AbsenceDto>>

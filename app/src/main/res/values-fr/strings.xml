@@ -72,4 +72,7 @@
     <!-- ========== États de notes manquants ========== -->
     <string name="grades_unnamed">Sans nom</string>
     <string name="grades_pending">—</string>
+    <string name="grades_cc">CC : %1$.2f</string>
+    <string name="grades_exam">Exam : %1$.2f</string>
+    <string name="grades_absences">Abs. : %1$d</string>
 </resources>

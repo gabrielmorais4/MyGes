@@ -1,24 +1,20 @@
 package com.example.myges.core.domain.model
 
-data class GradeEntry(
-    val name: String?,
-    val grade: Double?,
-    val coefficient: Double?,
-    val date: String?,
-    val isAbsence: Boolean
-)
-
-data class CourseGrades(
+data class CourseGrade(
     val name: String,
+    val ccGrades: List<Double>,
+    val ccAverage: Double?,
+    val exam: Double?,
     val average: Double?,
-    val coefficient: Double?,
-    val grades: List<GradeEntry>
+    val coef: String?,
+    val ects: String?,
+    val letterMark: String?,
+    val absences: Int
 )
 
 data class Semester(
     val name: String,
-    val average: Double?,
-    val courses: List<CourseGrades>
+    val courses: List<CourseGrade>
 )
 
 data class GradesData(
