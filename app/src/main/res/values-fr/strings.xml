@@ -66,4 +66,10 @@
     <string name="cd_app_logo">Logo MyGES</string>
     <string name="cd_back">Retour</string>
     <string name="cd_refresh">Actualiser</string>
+    <string name="cd_toggle_password_visibility">Afficher/masquer le mot de passe</string>
+    <string name="cd_profile_photo">Photo de profil</string>
+
+    <!-- ========== États de notes manquants ========== -->
+    <string name="grades_unnamed">Sans nom</string>
+    <string name="grades_pending">—</string>
 </resources>
