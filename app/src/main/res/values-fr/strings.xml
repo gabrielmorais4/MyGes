@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyGES</string>
+
+    <!-- ========== Navigation ========== -->
+    <string name="nav_agenda">Agenda</string>
+    <string name="nav_grades">Notes</string>
+    <string name="nav_news">Actualités</string>
+    <string name="nav_profile">Profil</string>
+
+    <!-- ========== Connexion ========== -->
+    <string name="login_title">Connexion à MyGES</string>
+    <string name="login_subtitle">Entrez vos identifiants GES</string>
+    <string name="login_username_label">Identifiant</string>
+    <string name="login_username_placeholder">Votre identifiant GES</string>
+    <string name="login_password_label">Mot de passe</string>
+    <string name="login_password_placeholder">Votre mot de passe</string>
+    <string name="login_button">Se connecter</string>
+    <string name="login_show_password">Afficher le mot de passe</string>
+    <string name="login_hide_password">Masquer le mot de passe</string>
+
+    <!-- ========== Agenda ========== -->
+    <string name="agenda_title">Agenda</string>
+    <string name="agenda_empty_title">Aucun événement</string>
+    <string name="agenda_empty_message">Aucun cours prévu sur les 2 prochains mois.</string>
+    <string name="agenda_event_room">Salle : %1$s</string>
+    <string name="agenda_event_teachers">Professeurs : %1$s</string>
+    <string name="agenda_event_type">Type : %1$s</string>
+
+    <!-- ========== Notes ========== -->
+    <string name="grades_title">Notes</string>
+    <string name="grades_empty_title">Aucune note</string>
+    <string name="grades_empty_message">Aucune note disponible pour cette année.</string>
+    <string name="grades_semester_average">Moyenne : %1$.2f</string>
+    <string name="grades_course_average">Moy. : %1$.2f</string>
+    <string name="grades_absence">Absence</string>
+    <string name="grades_coef">Coef. %1$.1f</string>
+
+    <!-- ========== Actualités ========== -->
+    <string name="news_title">Actualités</string>
+    <string name="news_empty_title">Aucune actualité</string>
+    <string name="news_empty_message">Aucune actualité disponible pour le moment.</string>
+    <string name="news_by">Par %1$s</string>
+    <string name="news_load_more">Charger plus</string>
+
+    <!-- ========== Profil ========== -->
+    <string name="profile_title">Profil</string>
+    <string name="profile_logout">Se déconnecter</string>
+    <string name="profile_logout_confirm_title">Se déconnecter ?</string>
+    <string name="profile_logout_confirm_message">Vous devrez vous reconnecter.</string>
+    <string name="profile_email_label">E-mail</string>
+    <string name="profile_uid_label">Identifiant</string>
+
+    <!-- ========== États communs ========== -->
+    <string name="loading">Chargement\u2026</string>
+    <string name="button_retry">Réessayer</string>
+    <string name="button_cancel">Annuler</string>
+    <string name="button_confirm">Confirmer</string>
+    <string name="error_title">Erreur</string>
+    <string name="error_generic">Une erreur est survenue. Veuillez réessayer.</string>
+    <string name="error_network">Pas de connexion internet.</string>
+    <string name="error_auth">Échec de la connexion. Vérifiez vos identifiants.</string>
+    <string name="error_fields_required">Identifiant et mot de passe requis.</string>
+
+    <!-- ========== Descriptions d\'accessibilité ========== -->
+    <string name="cd_app_logo">Logo MyGES</string>
+    <string name="cd_back">Retour</string>
+    <string name="cd_refresh">Actualiser</string>
+</resources>
