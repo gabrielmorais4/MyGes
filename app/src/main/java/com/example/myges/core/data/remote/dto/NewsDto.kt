@@ -26,3 +26,7 @@ data class NewsBannerDto(
     @SerializedName("title") val title: String?,
     @SerializedName("image_url") val imageUrl: String?
 )
+
+data class NewsPageDto(
+    @SerializedName("content") val content: List<NewsItemDto>?
+)

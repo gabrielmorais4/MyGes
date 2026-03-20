@@ -11,9 +11,9 @@ import com.example.myges.R
 
 sealed class BottomNavItem(
     val route: String,
-    @StringRes val labelRes: Int,
+    @param:StringRes val labelRes: Int,
     val icon: ImageVector,
-    @StringRes val contentDescRes: Int
+    @param:StringRes val contentDescRes: Int
 ) {
     data object Agenda : BottomNavItem(
         route = "agenda",

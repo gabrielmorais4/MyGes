@@ -50,6 +50,10 @@
     <string name="profile_logout_confirm_message">You will need to sign in again.</string>
     <string name="profile_email_label">Email</string>
     <string name="profile_uid_label">ID</string>
+    <string name="profile_language_title">Language</string>
+    <string name="profile_language_system">Use system language</string>
+    <string name="profile_language_english">English</string>
+    <string name="profile_language_french">French</string>
 
     <!-- ========== Common states ========== -->
     <string name="loading">Loading\u2026</string>

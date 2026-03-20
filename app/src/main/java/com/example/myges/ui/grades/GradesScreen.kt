@@ -2,11 +2,11 @@ package com.example.myges.ui.grades
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -96,7 +96,6 @@ private fun SemesterCard(semester: Semester) {
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun CourseRow(course: CourseGrade) {
     Column(modifier = Modifier.padding(vertical = 2.dp)) {
@@ -157,8 +156,10 @@ private fun CourseRow(course: CourseGrade) {
         }
 
         if (course.ccGrades.isNotEmpty()) {
-            FlowRow(
-                modifier = Modifier.padding(top = 4.dp),
+            Row(
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 course.ccGrades.forEach { grade ->

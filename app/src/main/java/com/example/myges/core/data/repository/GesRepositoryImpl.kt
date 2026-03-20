@@ -21,7 +21,7 @@ class GesRepositoryImpl @Inject constructor(
         gesApi.getAgenda(start, end).result.map { it.toDomain() }
 
     override suspend fun getNews(page: Int): List<NewsItem> =
-        gesApi.getNews(page).result.map { it.toDomain() }
+        gesApi.getNews(page).result.content.orEmpty().map { it.toDomain() }
 
     override suspend fun getGrades(year: Int): GradesData {
         val flat = gesApi.getGrades(year).result

@@ -6,6 +6,7 @@ import com.example.myges.core.data.remote.dto.ApiResponse
 import com.example.myges.core.data.remote.dto.CourseGradeDto
 import com.example.myges.core.data.remote.dto.NewsBannerDto
 import com.example.myges.core.data.remote.dto.NewsItemDto
+import com.example.myges.core.data.remote.dto.NewsPageDto
 import com.example.myges.core.data.remote.dto.ProfileDto
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -26,7 +27,7 @@ interface GesApi {
     suspend fun getNewsBanners(): ApiResponse<List<NewsBannerDto>>
 
     @GET("me/news")
-    suspend fun getNews(@Query("page") page: Int = 1): ApiResponse<List<NewsItemDto>>
+    suspend fun getNews(@Query("page") page: Int = 1): ApiResponse<NewsPageDto>
 
     @GET("me/{year}/grades")
     suspend fun getGrades(@Path("year") year: Int): ApiResponse<List<CourseGradeDto>>

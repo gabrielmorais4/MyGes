@@ -50,6 +50,10 @@
     <string name="profile_logout_confirm_message">Vous devrez vous reconnecter.</string>
     <string name="profile_email_label">E-mail</string>
     <string name="profile_uid_label">Identifiant</string>
+    <string name="profile_language_title">Langue</string>
+    <string name="profile_language_system">Utiliser la langue du système</string>
+    <string name="profile_language_english">Anglais</string>
+    <string name="profile_language_french">Français</string>
 
     <!-- ========== États communs ========== -->
     <string name="loading">Chargement\u2026</string>
