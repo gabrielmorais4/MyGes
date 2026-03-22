@@ -1,5 +1,6 @@
 package com.example.myges.ui.login
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,7 +39,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -96,7 +96,7 @@ fun LoginScreen(
                 modifier = Modifier.size(80.dp)
             ) {
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    painter = painterResource(R.mipmap.ic_launcher_foreground),
                     contentDescription = "MyGES logo",
                     modifier = Modifier.fillMaxSize()
                 )
