@@ -22,7 +22,9 @@
     <!-- ========== Agenda ========== -->
     <string name="agenda_title">Agenda</string>
     <string name="agenda_empty_title">No events</string>
-    <string name="agenda_empty_message">No events in the next 2 months.</string>
+    <string name="agenda_empty_message">No events this week.</string>
+    <string name="agenda_previous_week">Previous week</string>
+    <string name="agenda_next_week">Next week</string>
     <string name="agenda_event_room">Room: %1$s</string>
     <string name="agenda_event_teachers">Teachers: %1$s</string>
     <string name="agenda_event_type">Type: %1$s</string>

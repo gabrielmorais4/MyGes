@@ -22,7 +22,9 @@
     <!-- ========== Agenda ========== -->
     <string name="agenda_title">Agenda</string>
     <string name="agenda_empty_title">Aucun événement</string>
-    <string name="agenda_empty_message">Aucun cours prévu sur les 2 prochains mois.</string>
+    <string name="agenda_empty_message">Aucun cours prévu cette semaine.</string>
+    <string name="agenda_previous_week">Semaine précédente</string>
+    <string name="agenda_next_week">Semaine suivante</string>
     <string name="agenda_event_room">Salle : %1$s</string>
     <string name="agenda_event_teachers">Professeurs : %1$s</string>
     <string name="agenda_event_type">Type : %1$s</string>

@@ -102,7 +102,7 @@ private fun FloatingNavBar(
                         item = item,
                         selected = selected,
                         onClick = { onItemClick(item) },
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(if (selected) 1.8f else 1f)
                     )
                 }
             }

@@ -15,6 +15,9 @@ class AgendaViewModel @Inject constructor(
     private val getAgendaUseCase: GetAgendaUseCase
 ) : ViewModel() {
 
+    private val _weekOffset = MutableStateFlow(0)
+    val weekOffset: StateFlow<Int> = _weekOffset.asStateFlow()
+
     private val _uiState = MutableStateFlow<AgendaUiState>(AgendaUiState.Loading)
     val uiState: StateFlow<AgendaUiState> = _uiState.asStateFlow()
 
@@ -22,10 +25,20 @@ class AgendaViewModel @Inject constructor(
         load()
     }
 
+    fun previousWeek() {
+        _weekOffset.value = _weekOffset.value - 1
+        load()
+    }
+
+    fun nextWeek() {
+        _weekOffset.value = _weekOffset.value + 1
+        load()
+    }
+
     fun load() {
         viewModelScope.launch {
             _uiState.value = AgendaUiState.Loading
-            runCatching { getAgendaUseCase() }
+            runCatching { getAgendaUseCase(_weekOffset.value) }
                 .onSuccess { _uiState.value = AgendaUiState.Success(it) }
                 .onFailure { _uiState.value = AgendaUiState.Error(it.message ?: "") }
         }
