@@ -5,7 +5,6 @@ import com.example.myges.core.data.remote.dto.AgendaEventDto
 import com.example.myges.core.data.remote.dto.ApiResponse
 import com.example.myges.core.data.remote.dto.CourseGradeDto
 import com.example.myges.core.data.remote.dto.NewsBannerDto
-import com.example.myges.core.data.remote.dto.NewsItemDto
 import com.example.myges.core.data.remote.dto.NewsPageDto
 import com.example.myges.core.data.remote.dto.ProfileDto
 import retrofit2.http.GET
@@ -34,19 +33,4 @@ interface GesApi {
 
     @GET("me/{year}/absences")
     suspend fun getAbsences(@Path("year") year: Int): ApiResponse<List<AbsenceDto>>
-
-    @GET("me/{year}/teachers")
-    suspend fun getTeachers(@Path("year") year: Int): ApiResponse<List<Any>>
-
-    @GET("me/{year}/classes")
-    suspend fun getClasses(@Path("year") year: Int): ApiResponse<List<Any>>
-
-    @GET("me/classes/{classId}/students")
-    suspend fun getStudents(@Path("classId") classId: String): ApiResponse<List<Any>>
-
-    @GET("me/students/{studentId}")
-    suspend fun getStudent(@Path("studentId") studentId: String): ApiResponse<Any>
-
-    @GET("me/{year}/courses")
-    suspend fun getCourses(@Path("year") year: Int): ApiResponse<List<Any>>
 }

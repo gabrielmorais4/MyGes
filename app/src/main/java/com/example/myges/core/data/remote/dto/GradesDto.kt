@@ -17,6 +17,7 @@ data class CourseGradeDto(
 ) {
     fun toDomain() = CourseGrade(
         name = course.orEmpty(),
+        trimesterName = trimesterName,
         ccGrades = grades.orEmpty().mapNotNull { it.toDoubleOrNull() },
         ccAverage = ccAverage.toDoubleOrNull(),
         exam = exam.toDoubleOrNull(),

@@ -1,6 +1,7 @@
 package com.example.myges.core.data.repository
 
 import android.util.Base64
+import com.example.myges.core.di.AuthClient
 import com.example.myges.core.domain.repository.AuthRepository
 import com.example.myges.util.TokenManager
 import kotlinx.coroutines.Dispatchers
@@ -11,13 +12,9 @@ import java.net.URLDecoder
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val tokenManager: TokenManager
+    private val tokenManager: TokenManager,
+    @AuthClient private val authClient: OkHttpClient
 ) : AuthRepository {
-
-    private val authClient = OkHttpClient.Builder()
-        .followRedirects(false)
-        .followSslRedirects(false)
-        .build()
 
     override suspend fun login(username: String, password: String): Result<Unit> =
         withContext(Dispatchers.IO) {

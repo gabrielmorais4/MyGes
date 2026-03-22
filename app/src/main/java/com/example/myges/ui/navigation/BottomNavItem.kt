@@ -16,28 +16,28 @@ sealed class BottomNavItem(
     @param:StringRes val contentDescRes: Int
 ) {
     data object Agenda : BottomNavItem(
-        route = "agenda",
+        route = Routes.AGENDA,
         labelRes = R.string.nav_agenda,
         icon = Icons.Default.CalendarMonth,
         contentDescRes = R.string.nav_agenda
     )
 
     data object Grades : BottomNavItem(
-        route = "grades",
+        route = Routes.GRADES,
         labelRes = R.string.nav_grades,
         icon = Icons.Default.School,
         contentDescRes = R.string.nav_grades
     )
 
     data object News : BottomNavItem(
-        route = "news",
+        route = Routes.NEWS,
         labelRes = R.string.nav_news,
         icon = Icons.Default.Newspaper,
         contentDescRes = R.string.nav_news
     )
 
     data object Profile : BottomNavItem(
-        route = "profile",
+        route = Routes.PROFILE,
         labelRes = R.string.nav_profile,
         icon = Icons.Default.Person,
         contentDescRes = R.string.nav_profile

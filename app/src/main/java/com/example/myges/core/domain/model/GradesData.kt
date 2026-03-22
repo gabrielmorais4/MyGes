@@ -2,6 +2,7 @@ package com.example.myges.core.domain.model
 
 data class CourseGrade(
     val name: String,
+    val trimesterName: String?,
     val ccGrades: List<Double>,
     val ccAverage: Double?,
     val exam: Double?,

@@ -2,71 +2,78 @@ package com.example.myges.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+// ===== Dark color scheme — Ocean Deep =====
+val BackgroundDark = Color(0xFF08090F)
+val SurfaceDark = Color(0xFF0D1120)
+val SurfaceVariantDark = Color(0xFF13192E)
+val OnSurfaceDark = Color(0xFFE2EEFF)
+val OnSurfaceVariantDark = Color(0xFF8AA4C8)
+val OnBackgroundDark = Color(0xFFE2EEFF)
+
+val PrimaryDark = Color(0xFF60A5FA)           // blue-400 — vibrant sky blue
+val OnPrimaryDark = Color(0xFF00244F)
+val PrimaryContainerDark = Color(0xFF0A3065)
+val OnPrimaryContainerDark = Color(0xFFBFDBFE)
+
+val SecondaryDark = Color(0xFF7BA4C4)
+val OnSecondaryDark = Color(0xFF0D1E30)
+val SecondaryContainerDark = Color(0xFF122040)
+val OnSecondaryContainerDark = Color(0xFFB8D4EE)
+
+val TertiaryDark = Color(0xFF34D399)          // emerald — success/good grades
+val OnTertiaryDark = Color(0xFF00251A)
+val TertiaryContainerDark = Color(0xFF004030)
+val OnTertiaryContainerDark = Color(0xFFA7F3D0)
+
+val ErrorDark = Color(0xFFF87171)
+val OnErrorDark = Color(0xFF3B0000)
+val ErrorContainerDark = Color(0xFF3B1515)
+val OnErrorContainerDark = Color(0xFFFECACA)
+
+val OutlineDark = Color(0xFF1E2E4A)
+val OutlineVariantDark = Color(0xFF131E32)
+
 // ===== Light color scheme =====
-val PrimaryLight = Color(0xFF1A56C4)
+val BackgroundLight = Color(0xFFEFF6FF)
+val SurfaceLight = Color(0xFFFFFFFF)
+val SurfaceVariantLight = Color(0xFFDBEAFE)
+val OnSurfaceLight = Color(0xFF0A1628)
+val OnSurfaceVariantLight = Color(0xFF2D4E6E)
+val OnBackgroundLight = Color(0xFF0A1628)
+
+val PrimaryLight = Color(0xFF1D4ED8)          // blue-700
 val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFFD8E3FF)
-val OnPrimaryContainerLight = Color(0xFF001A43)
+val PrimaryContainerLight = Color(0xFFBFDBFE)
+val OnPrimaryContainerLight = Color(0xFF0A2050)
 
-val SecondaryLight = Color(0xFF575E71)
+val SecondaryLight = Color(0xFF3B6EA8)
 val OnSecondaryLight = Color(0xFFFFFFFF)
-val SecondaryContainerLight = Color(0xFFDBE2F9)
-val OnSecondaryContainerLight = Color(0xFF141B2C)
+val SecondaryContainerLight = Color(0xFFC8E0F8)
+val OnSecondaryContainerLight = Color(0xFF0D2840)
 
-val TertiaryLight = Color(0xFF715573)
+val TertiaryLight = Color(0xFF059669)
 val OnTertiaryLight = Color(0xFFFFFFFF)
+val TertiaryContainerLight = Color(0xFFD1FAE5)
+val OnTertiaryContainerLight = Color(0xFF003320)
 
-val BackgroundLight = Color(0xFFF9F9FF)
-val OnBackgroundLight = Color(0xFF1A1C22)
-
-val SurfaceLight = Color(0xFFF9F9FF)
-val OnSurfaceLight = Color(0xFF1A1C22)
-val SurfaceVariantLight = Color(0xFFE1E2EC)
-val OnSurfaceVariantLight = Color(0xFF44474F)
-
-val ErrorLight = Color(0xFFBA1A1A)
+val ErrorLight = Color(0xFFDC2626)
 val OnErrorLight = Color(0xFFFFFFFF)
-val ErrorContainerLight = Color(0xFFFFDAD6)
-val OnErrorContainerLight = Color(0xFF410002)
+val ErrorContainerLight = Color(0xFFFEE2E2)
+val OnErrorContainerLight = Color(0xFF7F1D1D)
 
-val OutlineLight = Color(0xFF74777F)
+val OutlineLight = Color(0xFF9AB4D4)
+val OutlineVariantLight = Color(0xFFC8DDEF)
 
-// ===== Dark color scheme =====
-val PrimaryDark = Color(0xFFAEC6FF)
-val OnPrimaryDark = Color(0xFF002D6E)
-val PrimaryContainerDark = Color(0xFF00419B)
-val OnPrimaryContainerDark = Color(0xFFD8E3FF)
+// ===== Extended semantic colors =====
+val SuccessLight = TertiaryLight
+val OnSuccessLight = OnTertiaryLight
+val SuccessDark = TertiaryDark
+val OnSuccessDark = OnTertiaryDark
 
-val SecondaryDark = Color(0xFFBFC6DC)
-val OnSecondaryDark = Color(0xFF293042)
-val SecondaryContainerDark = Color(0xFF3F4759)
-val OnSecondaryContainerDark = Color(0xFFDBE2F9)
-
-val TertiaryDark = Color(0xFFDEB8E0)
-val OnTertiaryDark = Color(0xFF402742)
-
-val BackgroundDark = Color(0xFF121318)
-val OnBackgroundDark = Color(0xFFE3E2E9)
-
-val SurfaceDark = Color(0xFF121318)
-val OnSurfaceDark = Color(0xFFE3E2E9)
-val SurfaceVariantDark = Color(0xFF44474F)
-val OnSurfaceVariantDark = Color(0xFFC4C6D0)
-
-val ErrorDark = Color(0xFFFFB4AB)
-val OnErrorDark = Color(0xFF690005)
-val ErrorContainerDark = Color(0xFF93000A)
-val OnErrorContainerDark = Color(0xFFFFDAD6)
-
-val OutlineDark = Color(0xFF8E9099)
-
-// ===== Semantic extras (success / warning) =====
-val SuccessLight = Color(0xFF2E7D32)
-val OnSuccessLight = Color(0xFFFFFFFF)
-val SuccessDark = Color(0xFF81C784)
-val OnSuccessDark = Color(0xFF003909)
-
-val WarningLight = Color(0xFFE65100)
+val WarningLight = Color(0xFFD97706)
 val OnWarningLight = Color(0xFFFFFFFF)
-val WarningDark = Color(0xFFFFB74D)
-val OnWarningDark = Color(0xFF3E1C00)
+val WarningDark = Color(0xFFFBBF24)
+val OnWarningDark = Color(0xFF3B2000)
+
+// ===== MaterialTheme extensions for semantic colors =====
+// Access via MaterialTheme.extendedColors.success / .warning defined in Theme.kt
