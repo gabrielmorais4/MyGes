@@ -113,7 +113,6 @@ fun ProfileScreen(
                         .verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Avatar header
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -171,7 +170,6 @@ fun ProfileScreen(
 
                     Spacer(Modifier.height(32.dp))
 
-                    // Info card
                     Surface(
                         shape = MaterialTheme.shapes.large,
                         color = MaterialTheme.colorScheme.surface,
@@ -198,7 +196,6 @@ fun ProfileScreen(
 
                     Spacer(Modifier.height(16.dp))
 
-                    // Logout row
                     Surface(
                         onClick = { showLogoutDialog = true },
                         shape = MaterialTheme.shapes.large,

@@ -125,7 +125,6 @@ fun AgendaScreen(viewModel: AgendaViewModel = hiltViewModel()) {
                 } else {
                     val todayCal = remember { Calendar.getInstance() }
 
-                    // Group events by (year, dayOfYear) — stable key for day grouping
                     val eventsByDay = remember(state.events) {
                         state.events
                             .sortedBy { it.startDate }
@@ -181,7 +180,6 @@ private fun DayHeader(date: Date, isToday: Boolean) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // Day number circle — filled if today
         Box(
             modifier = Modifier
                 .size(44.dp)
@@ -203,7 +201,6 @@ private fun DayHeader(date: Date, isToday: Boolean) {
             )
         }
 
-        // Day name + month/year
         Column {
             Text(
                 text = dayOfWeekFormat.format(date)
@@ -220,7 +217,6 @@ private fun DayHeader(date: Date, isToday: Boolean) {
             )
         }
 
-        // Trailing divider
         HorizontalDivider(
             modifier = Modifier.weight(1f),
             color = MaterialTheme.colorScheme.outlineVariant
@@ -245,7 +241,6 @@ private fun AgendaEventRow(event: AgendaEvent) {
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.Top
     ) {
-        // Time column
         Column(
             modifier = Modifier
                 .width(52.dp)
@@ -266,7 +261,6 @@ private fun AgendaEventRow(event: AgendaEvent) {
             }
         }
 
-        // Dot connector
         Column(
             modifier = Modifier.padding(top = 18.dp),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -279,7 +273,6 @@ private fun AgendaEventRow(event: AgendaEvent) {
             )
         }
 
-        // Event card
         Surface(
             shape = MaterialTheme.shapes.large,
             color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
@@ -289,7 +282,6 @@ private fun AgendaEventRow(event: AgendaEvent) {
                 modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                // Title row with optional type badge
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -317,14 +309,12 @@ private fun AgendaEventRow(event: AgendaEvent) {
                     }
                 }
 
-                // End time
                 Text(
                     text = "até ${timeFormat.format(endDate)}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
 
-                // Room + teacher
                 if (event.rooms.isNotEmpty()) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,

@@ -6,10 +6,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Serif for display — editorial, academic feel
 private val DisplayFamily = FontFamily.Serif
 
-// System sans-serif for body — clean, legible
 private val BodyFamily = FontFamily.Default
 
 val AppTypography = Typography(

@@ -4,7 +4,7 @@ import com.example.myges.core.data.remote.dto.AbsenceDto
 import com.example.myges.core.data.remote.dto.AgendaEventDto
 import com.example.myges.core.data.remote.dto.ApiResponse
 import com.example.myges.core.data.remote.dto.CourseGradeDto
-import com.example.myges.core.data.remote.dto.NewsBannerDto
+import com.example.myges.core.data.remote.dto.NewsBannerPageDto
 import com.example.myges.core.data.remote.dto.NewsPageDto
 import com.example.myges.core.data.remote.dto.ProfileDto
 import retrofit2.http.GET
@@ -23,7 +23,7 @@ interface GesApi {
     ): ApiResponse<List<AgendaEventDto>>
 
     @GET("me/news/banners")
-    suspend fun getNewsBanners(): ApiResponse<List<NewsBannerDto>>
+    suspend fun getNewsBanners(): ApiResponse<NewsBannerPageDto>
 
     @GET("me/news")
     suspend fun getNews(@Query("page") page: Int = 1): ApiResponse<NewsPageDto>

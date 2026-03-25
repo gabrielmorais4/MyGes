@@ -89,7 +89,6 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
-            // Logo mark
             Surface(
                 shape = MaterialTheme.shapes.large,
                 color = MaterialTheme.colorScheme.primaryContainer,
@@ -117,7 +116,6 @@ fun LoginScreen(
 
             Spacer(Modifier.height(40.dp))
 
-            // Form card
             Surface(
                 shape = MaterialTheme.shapes.extraLarge,
                 color = MaterialTheme.colorScheme.surface,
@@ -187,7 +185,6 @@ fun LoginScreen(
 
                     Spacer(Modifier.height(4.dp))
 
-                    // Gradient button
                     val buttonGradient = Brush.linearGradient(
                         colors = listOf(
                             MaterialTheme.colorScheme.primary,

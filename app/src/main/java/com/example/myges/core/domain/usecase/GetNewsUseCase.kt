@@ -7,6 +7,6 @@ import javax.inject.Inject
 class GetNewsUseCase @Inject constructor(
     private val gesRepository: GesRepository
 ) {
-    suspend operator fun invoke(page: Int = 1): List<NewsItem> =
+    suspend operator fun invoke(page: Int = 0): List<NewsItem> =
         gesRepository.getNews(page)
 }

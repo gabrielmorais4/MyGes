@@ -1,5 +1,6 @@
 package com.example.myges.core.data.remote.dto
 
+import com.example.myges.core.domain.model.NewsBanner
 import com.example.myges.core.domain.model.NewsItem
 import com.google.gson.annotations.SerializedName
 
@@ -22,9 +23,21 @@ data class NewsItemDto(
 }
 
 data class NewsBannerDto(
-    @SerializedName("id") val id: String?,
+    @SerializedName("ba_id") val id: Int?,
     @SerializedName("title") val title: String?,
-    @SerializedName("image_url") val imageUrl: String?
+    @SerializedName("image") val imageUrl: String?,
+    @SerializedName("author") val author: String?,
+    @SerializedName("url") val url: String?
+) {
+    fun toDomain() = NewsBanner(
+        id = id?.toString().orEmpty(),
+        title = title.orEmpty(),
+        imageUrl = imageUrl
+    )
+}
+
+data class NewsBannerPageDto(
+    @SerializedName("content") val content: List<NewsBannerDto>?
 )
 
 data class NewsPageDto(

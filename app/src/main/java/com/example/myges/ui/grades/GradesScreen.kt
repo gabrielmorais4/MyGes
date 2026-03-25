@@ -121,7 +121,6 @@ private fun SemesterCard(semester: Semester) {
         label = "chevron_${semester.name}"
     )
 
-    // Summary: average of all courses that have an average
     val semesterAvg = semester.courses
         .mapNotNull { it.average }
         .takeIf { it.isNotEmpty() }
@@ -140,7 +139,6 @@ private fun SemesterCard(semester: Semester) {
         modifier = Modifier.fillMaxWidth()
     ) {
         Column {
-            // ── Header (always visible, clickable) ──────────────────────────
             Surface(
                 onClick = { expanded = !expanded },
                 shape = if (expanded) RoundedCornerShape(
@@ -173,7 +171,6 @@ private fun SemesterCard(semester: Semester) {
                         horizontalArrangement = Arrangement.spacedBy(10.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // Semester average badge
                         semesterAvg?.let { avg ->
                             val color = gradeColor(avg)
                             Surface(
@@ -192,7 +189,6 @@ private fun SemesterCard(semester: Semester) {
                             }
                         }
 
-                        // Animated chevron
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowDown,
                             contentDescription = if (expanded) "Recolher" else "Expandir",
@@ -205,7 +201,6 @@ private fun SemesterCard(semester: Semester) {
                 }
             }
 
-            // ── Expandable content ──────────────────────────────────────────
             AnimatedVisibility(
                 visible = expanded,
                 enter = expandVertically(

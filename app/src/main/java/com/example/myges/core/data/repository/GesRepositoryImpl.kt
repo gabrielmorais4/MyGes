@@ -4,6 +4,7 @@ import com.example.myges.core.data.remote.api.GesApi
 import com.example.myges.core.domain.model.Absence
 import com.example.myges.core.domain.model.AgendaEvent
 import com.example.myges.core.domain.model.CourseGrade
+import com.example.myges.core.domain.model.NewsBanner
 import com.example.myges.core.domain.model.NewsItem
 import com.example.myges.core.domain.model.Profile
 import com.example.myges.core.domain.repository.GesRepository
@@ -18,6 +19,9 @@ class GesRepositoryImpl @Inject constructor(
 
     override suspend fun getAgenda(start: Long, end: Long): List<AgendaEvent> =
         gesApi.getAgenda(start, end).result.map { it.toDomain() }
+
+    override suspend fun getNewsBanners(): List<NewsBanner> =
+        gesApi.getNewsBanners().result.content.orEmpty().map { it.toDomain() }
 
     override suspend fun getNews(page: Int): List<NewsItem> =
         gesApi.getNews(page).result.content.orEmpty().map { it.toDomain() }
