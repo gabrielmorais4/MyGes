@@ -1,5 +1,7 @@
 package com.example.myges.ui.profile
 
+import android.app.LocaleManager
+import android.os.LocaleList
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,8 +18,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +28,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -32,6 +38,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -39,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,6 +55,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.myges.R
 import com.example.myges.ui.components.ErrorContent
 import com.example.myges.ui.components.LoadingContent
+import java.util.Locale
+
+private val languages = listOf("EN", "FR")
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,6 +67,14 @@ fun ProfileScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showLogoutDialog by rememberSaveable { mutableStateOf(false) }
+    val context = LocalContext.current
+    val localeManager = remember { context.getSystemService(LocaleManager::class.java) }
+    val currentLang = remember {
+        val tag = localeManager.applicationLocales[0]?.language
+            ?: Locale.getDefault().language
+        if (tag == "fr") "FR" else "EN"
+    }
+    var selectedLang by rememberSaveable { mutableStateOf(currentLang) }
 
     LaunchedEffect(Unit) {
         viewModel.navigationEvent.collect { event ->
@@ -191,6 +210,54 @@ fun ProfileScreen(
                                 icon = Icons.Default.Email,
                                 label = state.profile.email
                             )
+                        }
+                    }
+
+                    Spacer(Modifier.height(16.dp))
+
+                    Surface(
+                        shape = MaterialTheme.shapes.large,
+                        color = MaterialTheme.colorScheme.surface,
+                        tonalElevation = 1.dp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Language,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Text(
+                                text = stringResource(R.string.profile_language_title),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.weight(1f)
+                            )
+                            SingleChoiceSegmentedButtonRow {
+                                languages.forEachIndexed { index, lang ->
+                                    SegmentedButton(
+                                        selected = selectedLang == lang,
+                                        onClick = {
+                                            selectedLang = lang
+                                            val tag = if (lang == "FR") "fr" else "en"
+                                            localeManager.applicationLocales =
+                                                LocaleList.forLanguageTags(tag)
+                                        },
+                                        shape = SegmentedButtonDefaults.itemShape(
+                                            index = index,
+                                            count = languages.size
+                                        ),
+                                        label = { Text(lang) }
+                                    )
+                                }
+                            }
                         }
                     }
 

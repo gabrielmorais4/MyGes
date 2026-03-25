@@ -14,7 +14,7 @@ data class CourseGrade(
 )
 
 data class Semester(
-    val name: String,
+    val number: Int?,
     val courses: List<CourseGrade>
 )
 

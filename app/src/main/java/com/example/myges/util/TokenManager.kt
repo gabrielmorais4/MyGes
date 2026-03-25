@@ -5,10 +5,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Manages persistence of the OAuth Bearer token in SharedPreferences.
- * Synchronous reads make it safe to call from OkHttp interceptors.
- */
+
 @Singleton
 class TokenManager @Inject constructor(
     @param:ApplicationContext private val context: Context

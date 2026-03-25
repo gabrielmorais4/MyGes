@@ -38,6 +38,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -101,7 +102,7 @@ fun GradesScreen(viewModel: GradesViewModel = hiltViewModel()) {
                         modifier = Modifier.padding(horizontal = 16.dp)
                     ) {
                         item { Spacer(Modifier.height(4.dp)) }
-                        items(state.data.semesters, key = { it.name }) { semester ->
+                        items(state.data.semesters, key = { it.number ?: 0 }) { semester ->
                             SemesterCard(semester = semester)
                         }
                         item { Spacer(Modifier.height(8.dp)) }
@@ -114,11 +115,16 @@ fun GradesScreen(viewModel: GradesViewModel = hiltViewModel()) {
 
 @Composable
 private fun SemesterCard(semester: Semester) {
-    var expanded by rememberSaveable(semester.name) { mutableStateOf(false) }
+    val context = LocalContext.current
+    val semesterLabel = if (semester.number != null)
+        stringResource(R.string.grades_semester, semester.number)
+    else
+        stringResource(R.string.grades_semester_unknown)
+    var expanded by rememberSaveable(semester.number) { mutableStateOf(false) }
     val chevronRotation by animateFloatAsState(
         targetValue = if (expanded) 180f else 0f,
         animationSpec = tween(durationMillis = 250),
-        label = "chevron_${semester.name}"
+        label = "chevron_${semester.number}"
     )
 
     val semesterAvg = semester.courses
@@ -156,12 +162,16 @@ private fun SemesterCard(semester: Semester) {
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = semester.name,
+                            text = semesterLabel,
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "${semester.courses.size} cadeira${if (semester.courses.size != 1) "s" else ""}",
+                            text = context.resources.getQuantityString(
+                                R.plurals.grades_courses_count,
+                                semester.courses.size,
+                                semester.courses.size
+                            ),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

@@ -11,10 +11,16 @@ class GetGradesUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(year: Int = AcademicYearCalculator.currentYear()): GradesData {
         val flatGrades = gesRepository.getGrades(year)
+        val numberRegex = Regex("""\d+""")
         val semesters = flatGrades
             .groupBy { it.trimesterName.orEmpty() }
-            .map { (name, courses) -> Semester(name = name, courses = courses) }
-            .sortedBy { it.name }
+            .map { (name, courses) ->
+                Semester(
+                    number = numberRegex.find(name)?.value?.toIntOrNull(),
+                    courses = courses
+                )
+            }
+            .sortedBy { it.number }
         return GradesData(semesters = semesters)
     }
 }
