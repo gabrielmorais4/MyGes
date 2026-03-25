@@ -82,8 +82,8 @@
     <string name="grades_cc">CC: %1$.2f</string>
     <string name="grades_exam">Exam: %1$.2f</string>
     <string name="grades_absences">Abs: %1$d</string>
-    <string name="grades_semester">Semester %1$d</string>
-    <string name="grades_semester_unknown">Semester</string>
+    <string name="grades_semester">Trimester %1$d</string>
+    <string name="grades_semester_unknown">Trimester</string>
 
     <plurals name="grades_courses_count">
         <item quantity="one">%1$d course</item>
